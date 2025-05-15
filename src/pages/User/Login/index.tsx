@@ -1,19 +1,19 @@
 import Footer from '@/components/Footer';
-import { listChartByPageUsingPOST } from '@/services/yubi/chartController';
-import { getLoginUserUsingGET, userLoginUsingPOST } from '@/services/yubi/userController';
-import { Link } from '@@/exports';
-import { LockOutlined, UserOutlined } from '@ant-design/icons';
-import { LoginForm, ProFormText } from '@ant-design/pro-components';
-import { useEmotionCss } from '@ant-design/use-emotion-css';
-import { Helmet, history, useModel } from '@umijs/max';
-import { message, Tabs } from 'antd';
-import React, { useEffect, useState } from 'react';
-import { flushSync } from 'react-dom';
+import {listChartByPageUsingPost} from '@/services/yubi/chartController';
+import {getLoginUserUsingGet, userLoginUsingPost} from '@/services/yubi/userController';
+import {Link} from '@@/exports';
+import {LockOutlined, UserOutlined} from '@ant-design/icons';
+import {LoginForm, ProFormText} from '@ant-design/pro-components';
+import {useEmotionCss} from '@ant-design/use-emotion-css';
+import {Helmet, history, useModel} from '@umijs/max';
+import {message, Tabs} from 'antd';
+import React, {useEffect, useState} from 'react';
+import {flushSync} from 'react-dom';
 import Settings from '../../../../config/defaultSettings';
 
 const Login: React.FC = () => {
   const [type, setType] = useState<string>('account');
-  const { initialState, setInitialState } = useModel('@@initialState');
+  const {initialState, setInitialState} = useModel('@@initialState');
   const containerClassName = useEmotionCss(() => {
     return {
       display: 'flex',
@@ -27,7 +27,7 @@ const Login: React.FC = () => {
   });
 
   useEffect(() => {
-    listChartByPageUsingPOST({}).then((res) => {
+    listChartByPageUsingPost({}).then((res) => {
       console.error('res', res);
     });
   });
@@ -36,7 +36,7 @@ const Login: React.FC = () => {
    * 登陆成功后，获取用户登录信息
    */
   const fetchUserInfo = async () => {
-    const userInfo = await getLoginUserUsingGET();
+    const userInfo = await getLoginUserUsingGet();
     if (userInfo) {
       flushSync(() => {
         setInitialState((s) => ({
@@ -50,7 +50,7 @@ const Login: React.FC = () => {
   const handleSubmit = async (values: API.UserLoginRequest) => {
     try {
       // 登录
-      const res = await userLoginUsingPOST(values);
+      const res = await userLoginUsingPost(values);
       if (res.code === 0) {
         const defaultLoginSuccessMessage = '登录成功！';
         message.success(defaultLoginSuccessMessage);
@@ -86,7 +86,7 @@ const Login: React.FC = () => {
             minWidth: 280,
             maxWidth: '75vw',
           }}
-          logo={<img alt="logo" src="/logo.svg" />}
+          logo={<img alt="logo" src="/logo.svg"/>}
           title="GBC智能 BI"
           subTitle={
             <a href="https://github.com/MegumiN152" target="_blank">
@@ -114,7 +114,7 @@ const Login: React.FC = () => {
                 name="userAccount"
                 fieldProps={{
                   size: 'large',
-                  prefix: <UserOutlined />,
+                  prefix: <UserOutlined/>,
                 }}
                 placeholder={'请输入用户名'}
                 rules={[
@@ -128,7 +128,7 @@ const Login: React.FC = () => {
                 name="userPassword"
                 fieldProps={{
                   size: 'large',
-                  prefix: <LockOutlined />,
+                  prefix: <LockOutlined/>,
                 }}
                 placeholder={'请输入密码'}
                 rules={[
@@ -149,7 +149,7 @@ const Login: React.FC = () => {
           </div>
         </LoginForm>
       </div>
-      <Footer />
+      <Footer/>
     </div>
   );
 };

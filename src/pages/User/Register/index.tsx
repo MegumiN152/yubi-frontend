@@ -1,14 +1,15 @@
 import Footer from '@/components/Footer';
-import { LeftCircleOutlined, LockOutlined, UserOutlined } from '@ant-design/icons';
+import {LeftCircleOutlined, LockOutlined, UserOutlined} from '@ant-design/icons';
 
-import { LoginForm, ProFormText } from '@ant-design/pro-components';
+import {LoginForm, ProFormText} from '@ant-design/pro-components';
 
-import { userRegisterUsingPOST } from '@/services/yubi/userController';
-import { useEmotionCss } from '@ant-design/use-emotion-css';
-import { Helmet, history } from '@umijs/max';
-import { Button, Tabs, message } from 'antd';
-import React, { useState } from 'react';
+import {userRegisterUsingPost} from '@/services/yubi/userController';
+import {useEmotionCss} from '@ant-design/use-emotion-css';
+import {Helmet, history} from '@umijs/max';
+import {Button, message, Tabs} from 'antd';
+import React, {useState} from 'react';
 import Settings from '../../../../config/defaultSettings';
+
 const Register: React.FC = () => {
   // const [] = useState<API.LoginResult>({});
   const [type, setType] = useState<string>('account');
@@ -31,7 +32,7 @@ const Register: React.FC = () => {
     }
     try {
       // 登录
-      const res = await userRegisterUsingPOST(values);
+      const res = await userRegisterUsingPost(values);
       if (res.code === 0) {
         const defaultLoginSuccessMessage = '注册成功！';
         message.success(defaultLoginSuccessMessage);
@@ -69,7 +70,7 @@ const Register: React.FC = () => {
             minWidth: 280,
             maxWidth: '75vw',
           }}
-          logo={<img alt="logo" src="/logo.svg" />}
+          logo={<img alt="logo" src="/logo.svg"/>}
           title="GBC智能BI平台"
           subTitle={'AI 智能分析数据'}
           onFinish={async (values) => {
@@ -94,7 +95,7 @@ const Register: React.FC = () => {
                 name="userAccount"
                 fieldProps={{
                   size: 'large',
-                  prefix: <UserOutlined />,
+                  prefix: <UserOutlined/>,
                 }}
                 placeholder={'请输入用户名'}
                 rules={[
@@ -108,7 +109,7 @@ const Register: React.FC = () => {
                 name="userPassword"
                 fieldProps={{
                   size: 'large',
-                  prefix: <LockOutlined />,
+                  prefix: <LockOutlined/>,
                 }}
                 placeholder={'请输入密码'}
                 rules={[
@@ -126,7 +127,7 @@ const Register: React.FC = () => {
                 name="checkPassword"
                 fieldProps={{
                   size: 'large',
-                  prefix: <LockOutlined />,
+                  prefix: <LockOutlined/>,
                 }}
                 placeholder={'请再次输入密码'}
                 rules={[
@@ -151,19 +152,19 @@ const Register: React.FC = () => {
             <Button
               type="dashed"
               danger
-              icon={<LeftCircleOutlined />}
+              icon={<LeftCircleOutlined/>}
               href={'/user/login'}
-              style={{ marginRight: '10px' }}
+              style={{marginRight: '10px'}}
             >
               退出
             </Button>
-            <span style={{ fontSize: '16px', fontFamily: 'Arial, sans-serif' }}>
+            <span style={{fontSize: '16px', fontFamily: 'Arial, sans-serif'}}>
               点击离开注册界面
             </span>
           </div>
         </LoginForm>
       </div>
-      <Footer />
+      <Footer/>
     </div>
   );
 };

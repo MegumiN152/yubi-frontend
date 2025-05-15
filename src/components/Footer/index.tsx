@@ -1,7 +1,8 @@
-import { GithubOutlined } from '@ant-design/icons';
-import { DefaultFooter } from '@ant-design/pro-components';
+import {GithubOutlined} from '@ant-design/icons';
+import {DefaultFooter} from '@ant-design/pro-components';
 import '@umijs/max';
 import React from 'react';
+
 const Footer: React.FC = () => {
   const defaultMessage = 'EL PSY CONGROO';
   const currentYear = new Date().getFullYear();
@@ -13,14 +14,14 @@ const Footer: React.FC = () => {
       copyright={`${currentYear} ${defaultMessage}`}
       links={[
         {
-          key: 'GBC智能 BI',
-          title: 'GBC智能 BI',
-          href: 'https://pro.ant.design',
+          key: '赣ICP备2024038109号',
+          title: '赣ICP备2024038109号',
+          href: 'https://beian.miit.gov.cn/',
           blankTarget: true,
         },
         {
           key: 'github',
-          title: <GithubOutlined />,
+          title: <GithubOutlined/>,
           href: 'https://github.com/MegumiN152',
           blankTarget: true,
         },
